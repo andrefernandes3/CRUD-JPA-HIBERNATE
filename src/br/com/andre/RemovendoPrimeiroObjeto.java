@@ -12,8 +12,13 @@ public class RemovendoPrimeiroObjeto {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemploPU");
 		EntityManager em = emf.createEntityManager();
 		
-		Cliente cliente = new Cliente();
+		Cliente cliente = em.find(Cliente.class, 4L);
+		
+		em.getTransaction().begin();
 		em.remove(cliente);
+		em.getTransaction().commit();
+		
+		System.out.println("Objeto removido com sucesso");
 
 	}
 
